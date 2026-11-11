@@ -1,0 +1,91 @@
+{{define "document-start"}}<!doctype html>
+<html lang="{{.Site.Language}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{.Title}}{{with .Pagination}}{{if gt .Number 1}} ({{label "page"}} {{.Number}}){{end}}{{end}}{{with .Site.Title}} | {{.}}{{end}}</title>
+  {{if .Description}}<meta name="description" content="{{.Description}}">{{end}}
+  {{with .Feed}}<link rel="alternate" type="application/atom+xml" href="{{.}}" title="{{$.Title}}">{{end}}
+  {{if .Canonical}}<link rel="canonical" href="{{.Canonical}}">
+  <meta property="og:type" content="{{if .PublishedAt}}article{{else}}website{{end}}">
+  <meta property="og:url" content="{{.Canonical}}">
+  <meta property="og:title" content="{{.Title}}">
+  {{with .Site.Title}}<meta property="og:site_name" content="{{.}}">{{end}}
+  {{with .Description}}<meta property="og:description" content="{{.}}">{{end}}
+  {{with .Image}}{{if .Canonical}}<meta property="og:image" content="{{.Canonical}}">
+  {{with .Alt}}<meta property="og:image:alt" content="{{.}}">{{end}}{{end}}{{end}}
+  <meta name="twitter:card" content="{{if and .Image .Image.Canonical}}summary_large_image{{else}}summary{{end}}">{{end}}
+  {{with .StructuredData}}<script type="application/ld+json">{{.}}</script>{{end}}
+  {{with .Site.Brand.Favicon}}<link rel="icon" href="{{.}}">{{end}}
+  {{with .Site.Brand.Color}}<meta name="theme-color" content="{{.}}">{{end}}
+  <link rel="stylesheet" href="{{asset "site.css"}}">
+  {{with .Site.Brand.Color}}<style>:root { --accent: {{.}}; }</style>{{end}}
+</head>
+<body>
+  <a class="skip-link" href="#main">{{label "skip"}}</a>
+  {{if or .Site.Title .Site.Navigation.Main .Site.Brand.Logo}}
+  <header class="masthead">
+    {{if or .Site.Title .Site.Brand.Logo}}
+    <a class="identity" href="{{.Site.URL}}"{{if not .Site.Title}}{{with .Site.Brand.Logo}}{{if not .Alt}} aria-label="{{label "home"}}"{{end}}{{end}}{{end}}>
+      {{with .Site.Brand.Logo}}<img class="logo" src="{{.URL}}" alt="{{if not $.Site.Title}}{{.Alt}}{{end}}">{{end}}
+      {{with .Site.Title}}<span class="site-title">{{.}}</span>{{end}}
+    </a>
+    {{end}}
+    {{with .Site.Navigation.Main}}
+    <nav class="main-nav" aria-label="{{label "main_navigation"}}">
+      <ul>{{range .}}<li><a href="{{.URL}}"{{if eq .URL $.URL}} aria-current="page"{{end}}>{{.Label}}</a></li>{{end}}</ul>
+    </nav>
+    {{end}}
+  </header>
+  {{end}}
+{{end}}
+
+{{define "caption"}}{{with .}}<figcaption>{{range .}}{{if .URL}}<a href="{{.URL}}">{{.Text}}</a>{{else}}{{.Text}}{{end}}{{end}}</figcaption>{{end}}{{end}}
+
+{{define "title-image"}}
+  {{with .Image}}
+  <figure class="title-image"><img src="{{.URL}}" alt="{{.Alt}}"{{with .Focus}} class="focus-{{.}}"{{end}}>
+    {{template "caption" .Caption}}
+  </figure>
+  {{end}}
+{{end}}
+
+{{define "entry-image"}}
+  {{with .Image}}
+  <figure class="story-image"><img src="{{.URL}}" alt="{{.Alt}}"{{with .Focus}} class="focus-{{.}}"{{end}} loading="lazy" decoding="async">
+    {{template "caption" .Caption}}
+  </figure>
+  {{end}}
+{{end}}
+
+{{define "dates"}}
+  {{if or .PublishedAt .UpdatedAt}}
+  <p class="dates">
+    {{with .PublishedAt}}<span>{{label "published"}} <time datetime="{{.}}">{{.}}</time></span>{{end}}
+    {{with .UpdatedAt}}<span>{{label "updated"}} <time datetime="{{.}}">{{.}}</time></span>{{end}}
+  </p>
+  {{end}}
+{{end}}
+
+{{define "document-end"}}
+  {{if or .Site.Copyright .Site.Navigation.Footer}}
+  <footer class="site-footer">
+    {{with .Site.Navigation.Footer}}
+    <nav aria-label="{{label "footer_navigation"}}"><ul>{{range .}}<li><a href="{{.URL}}">{{.Label}}</a></li>{{end}}</ul></nav>
+    {{end}}
+    {{with .Site.Copyright}}<p>{{.}}</p>{{end}}
+  </footer>
+  {{end}}
+</body>
+</html>
+{{end}}
+
+{{define "pagination"}}{{with .Pagination}}
+    <nav class="pagination" aria-label="{{label "pagination"}}">
+      <ul>
+        {{with .Previous}}<li class="step"><a href="{{.}}" rel="prev">{{label "previous_page"}}</a></li>{{end}}
+        {{range .Pages}}<li><a href="{{.URL}}" aria-label="{{label "page"}} {{.Number}}"{{if .Current}} aria-current="page"{{end}}>{{.Number}}</a></li>{{end}}
+        {{with .Next}}<li class="step"><a href="{{.}}" rel="next">{{label "next_page"}}</a></li>{{end}}
+      </ul>
+    </nav>
+{{end}}{{end}}
