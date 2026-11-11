@@ -9,7 +9,7 @@ Cozy Badger.
 | [Bluebell](themes/bluebell/) | Small businesses, products, and personal sites. Rounded glass panels over soft color fields, in light and dark. | 0.1.0 |
 
 Each theme is a standalone package. Installing one doesn't require the others.
-The [themes document](docs/themes.md) has a screenshot of each.
+The [themes overview](docs/themes.md) has a screenshot of each.
 
 ## Install a theme
 
