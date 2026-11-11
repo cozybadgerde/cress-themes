@@ -62,6 +62,16 @@ Check every page type with real content: the landing page, a list with and
 without images, a long article, `/tour/`, and `404.html`. Check narrow and
 wide windows and keyboard focus.
 
+Before sending a change, run the checks with [mise](https://mise.jdx.dev/):
+
+```sh
+mise run check
+```
+
+They lint Markdown, check spelling and TOML, and build every theme with
+Cress 1.0.0 in English and German. CI runs the same checks. Format TOML files
+with `mise run fmt`.
+
 ## License
 
 The themes are available under the [BSD 3-Clause License](LICENSE).

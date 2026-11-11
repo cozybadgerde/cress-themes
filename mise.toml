@@ -1,0 +1,62 @@
+[tools]
+"github:cozybadgerde/cress" = "1.0.0"
+"github:shinagawa-web/gomarklint" = "3.3.2"
+typos = "1.52.1"
+taplo = "0.10.0"
+
+[tasks.check]
+description = "Check Markdown, spelling, TOML, and theme builds without editing files"
+depends = [
+  "check:markdown",
+  "check:spelling",
+  "check:toml-format",
+  "check:toml",
+  "check:themes",
+]
+
+[tasks."check:markdown"]
+description = "Lint Markdown and internal anchors"
+run = "gomarklint"
+
+[tasks."check:spelling"]
+description = "Check spelling"
+run = "typos"
+
+[tasks."check:toml-format"]
+description = "Check TOML formatting without editing files"
+run = "taplo fmt --check"
+
+[tasks."check:toml"]
+description = "Validate TOML syntax"
+run = "taplo check"
+
+[tasks."check:themes"]
+description = "Build every theme with the scaffold site in English and German"
+run = """
+set -eu
+work=$(mktemp -d)
+trap 'rm -rf "$work"' EXIT
+for theme in themes/*/; do
+  name=$(basename "$theme")
+  for language in en de; do
+    site="$work/$name-$language"
+    echo "Building $name ($language)"
+    cress site init "$site" >/dev/null
+    mkdir "$site/themes"
+    cp -R "themes/$name" "$site/themes/"
+    sed -e "s/^name = \\"poppy\\"$/name = \\"$name\\"/" \
+      -e "s/^language = \\"en\\"$/language = \\"$language\\"/" \
+      -e "s|^# host = \\"https://example.org\\"$|host = \\"https://example.org\\"|" \
+      "$site/cress.toml" >"$site/cress.toml.new"
+    mv "$site/cress.toml.new" "$site/cress.toml"
+    grep -q "^name = \\"$name\\"$" "$site/cress.toml"
+    grep -q "^language = \\"$language\\"$" "$site/cress.toml"
+    grep -q "^host = " "$site/cress.toml"
+    cress site build "$site" >/dev/null
+  done
+done
+"""
+
+[tasks.fmt]
+description = "Format TOML files"
+run = "taplo fmt"
