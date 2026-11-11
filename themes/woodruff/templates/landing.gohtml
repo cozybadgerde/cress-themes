@@ -1,0 +1,13 @@
+{{template "document-start" .}}
+  <main id="main" class="landing" tabindex="-1">
+    <section class="hero{{if .Image}} with-image{{end}}" aria-labelledby="page-title">
+      <div class="hero-card glass">
+        <h1 id="page-title">{{.Title}}</h1>
+        {{with .Excerpt}}<p class="standfirst">{{.}}</p>{{end}}
+        {{template "dates" .}}
+      </div>
+      {{template "title-image" .}}
+    </section>
+    {{with .Body}}<div class="sheet prose">{{.}}</div>{{end}}
+  </main>
+{{template "document-end" .}}

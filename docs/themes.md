@@ -36,3 +36,14 @@ sections. Landing pages run their text in columns on wide screens. Tables
 suit menus and price lists.
 
 Version 0.1.0. Details are in the [Mariposa README](../themes/mariposa/README.md).
+
+## Woodruff
+
+![Woodruff landing page: a floating pill menu over a full-width forest-green hero, with a frosted card holding the serif headline.](assets/woodruff.webp)
+
+A soft forest theme for small software and product companies. Light serif
+headings sit on linen paper, the menu floats as a frosted pill, and images,
+code, and list cards have rounded double frames. Landing pages open with a
+full-width hero and a frosted title card.
+
+Version 0.1.0. Details are in the [Woodruff README](../themes/woodruff/README.md).

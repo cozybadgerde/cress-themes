@@ -1,0 +1,13 @@
+{{template "document-start" .}}
+  <main id="main" class="article" tabindex="-1">
+    <article>
+      <header class="article-head">
+        <h1>{{.Title}}</h1>
+        {{with .Excerpt}}<p class="standfirst">{{.}}</p>{{end}}
+        {{template "dates" .}}
+      </header>
+      {{template "title-image" .}}
+      <div class="sheet prose">{{.Body}}</div>
+    </article>
+  </main>
+{{template "document-end" .}}
