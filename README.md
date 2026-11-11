@@ -8,8 +8,8 @@ Cozy Badger.
 | [Foxglove](themes/foxglove/) | Publications, journals, and businesses that write a lot. Bold magazine layout with color blocks and an editorial grid. | 0.1.0 |
 | [Bluebell](themes/bluebell/) | Small businesses, products, and personal sites. Rounded glass panels over soft color fields, in light and dark. | 0.1.0 |
 
-Each theme is a complete, standalone package. Installing one doesn't require
-the others.
+Each theme is a standalone package. Installing one doesn't require the others.
+The [themes document](docs/themes.md) has a screenshot of each.
 
 ## Install a theme
 

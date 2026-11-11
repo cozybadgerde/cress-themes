@@ -1,32 +1,32 @@
 # Foxglove
 
 Foxglove is a magazine theme for Cress. It suits newsletters, small
-publications, and businesses that publish long articles. Headlines are
-heavy, scale changes are large, and solid color blocks mark the main
-moments.
+publications, and businesses that publish long articles. Headlines use a
+heavy weight at large sizes, and page titles sit on solid color blocks.
 
 It requires Cress 1.x, from 1.0.0. Installation is described in the
 [collection README](../../README.md#install-a-theme).
 
 ## Pages
 
-- **Landing pages** place the title in a full-width color block. A title image
+- Landing pages place the title in a full-width color block. A title image
   overhangs the block's lower edge. The first paragraph is shown large, and
   every paragraph that contains only a link becomes a button.
-- **Ordinary pages** read like articles: a large headline, the page's
-  `excerpt` as a standfirst when it's set, and the dates. A title image appears
-  full width, followed by the text in a reading column.
-- **List pages** show entries in a grid in the order Cress provides. The first
-  entry on each page spans the full width. Entries without an image become
-  solid color cards, so a list works without photographs.
-- **The not-found page** shows a large 404 in a color block with a link home.
+- Ordinary pages show a large headline, the page's `excerpt` as a standfirst
+  when it's set, and the dates. A title image appears full width, followed by
+  the text in a reading column.
+- List pages show entries in a grid in the order Cress provides. The first
+  entry on each page spans the full width. Entries with an image become cards
+  on a warm panel. Entries without one become solid color cards, so a list
+  works without photographs.
+- The not-found page shows a large 404 in a color block with a link home.
 
 Block quotes become large pull quotes. Use them for short, quotable lines.
 
 ## Images
 
 Foxglove crops title images to fixed shapes: 4:3 on landing pages and list
-cards, 3:2 for a lead entry, and 16:9 on articles. Use `focus` in the image
+cards, 3:2 for a lead entry, 16:9 on articles, and 21:9 on list pages. Use `focus` in the image
 settings to keep the important part in view. Images inside the text keep
 their proportions.
 

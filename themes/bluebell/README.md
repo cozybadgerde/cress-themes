@@ -2,7 +2,7 @@
 
 Bluebell is a rounded glass theme for Cress. It suits small businesses,
 products, and personal sites. Content sits on frosted, translucent panels
-that scroll over still color fields made from the brand color. It follows
+that scroll over fixed color fields made from the brand color. It follows
 the visitor's light or dark setting.
 
 It requires Cress 1.x, from 1.0.0. Installation is described in the
@@ -10,16 +10,16 @@ It requires Cress 1.x, from 1.0.0. Installation is described in the
 
 ## Pages
 
-- **Landing pages** open with a hero card for the title. A title image sits
+- Landing pages open with a hero card for the title. A title image sits
   beside it in a rounded frame on wide screens and below it on narrow ones.
   The body follows on one wide panel. The first paragraph is shown large, and
   every paragraph that contains only a link becomes a pill button.
-- **Ordinary pages** are a single panel: headline, the page's `excerpt` as a
+- Ordinary pages are a single panel: headline, the page's `excerpt` as a
   standfirst when it's set, date chips, a title image, and the text in a
   reading column.
-- **List pages** show entries as an even grid of cards in the order Cress
+- List pages show entries as an even grid of cards in the order Cress
   provides. Entries without an image get a card tinted with the accent.
-- **The not-found page** is a compact panel with a large 404 and a link home.
+- The not-found page is a compact panel with a large 404 and a link home.
 
 The site title, logo, and main navigation share a floating bar that stays at
 the top on larger screens. Without a title, logo, or main navigation, the bar

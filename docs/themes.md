@@ -1,0 +1,27 @@
+# Themes overview
+
+Cozy Badger maintains these themes for Cress 1.x. Each one runs on Cress 1.0.0
+or later and includes English and German labels. Installation is in the
+[README](../README.md#install-a-theme).
+
+## Foxglove
+
+![Foxglove landing page: the headline in white on a magenta block, with a photo overhanging the block's lower edge.](assets/foxglove.webp)
+
+A magazine theme for publications and businesses that publish long articles.
+Headlines use the heaviest system font weight. Page titles and list entries
+without images sit on solid magenta or ink blocks. List pages lead with one
+full-width entry above a grid.
+
+Version 0.1.0. Details are in the [Foxglove README](../themes/foxglove/README.md).
+
+## Bluebell
+
+![Bluebell landing page: a frosted hero card and a rounded photo over soft violet and pink color fields.](assets/bluebell.webp)
+
+A rounded theme for small businesses, products, and personal sites. Content
+sits on frosted glass panels over color fields made from the brand color. It
+follows the visitor's light or dark setting. List pages show an even grid of
+cards.
+
+Version 0.1.0. Details are in the [Bluebell README](../themes/bluebell/README.md).
