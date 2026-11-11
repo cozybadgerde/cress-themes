@@ -1,0 +1,27 @@
+{{template "document-start" .}}
+  <main id="main" class="list" tabindex="-1">
+    <header class="list-head">
+      <h1>{{.Title}}</h1>
+      {{template "dates" .}}
+      <div class="prose intro">{{.Body}}</div>
+    </header>
+    {{template "title-image" .}}
+    {{with .Entries}}
+    <div class="stories-frame">
+    <ul class="stories">
+      {{range .}}
+      <li class="story{{if .Image}} has-image{{end}}">
+        <div class="story-text">
+          <h2><a href="{{.URL}}">{{.Title}}</a></h2>
+          {{template "dates" .}}
+          {{with .Excerpt}}<p class="excerpt">{{.}}</p>{{end}}
+        </div>
+        {{template "entry-image" .}}
+      </li>
+      {{end}}
+    </ul>
+    </div>
+    {{end}}
+    {{template "pagination" .}}
+  </main>
+{{template "document-end" .}}

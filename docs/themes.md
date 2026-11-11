@@ -25,3 +25,14 @@ follows the visitor's light or dark setting. List pages show an even grid of
 cards.
 
 Version 0.1.0. Details are in the [Bluebell README](../themes/bluebell/README.md).
+
+## Mariposa
+
+![Mariposa landing page: a serif masthead between rules, a large headline, and the text in three ruled columns with a drop cap.](assets/mariposa.webp)
+
+A broadsheet theme for restaurants, cafés, and food trucks. Text is set in
+serif system fonts on off-white newsprint, with heavy and thin rules between
+sections. Landing pages run their text in columns on wide screens. Tables
+suit menus and price lists.
+
+Version 0.1.0. Details are in the [Mariposa README](../themes/mariposa/README.md).

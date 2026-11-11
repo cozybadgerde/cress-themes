@@ -1,0 +1,10 @@
+{{template "document-start" .}}
+  <main id="main" class="landing" tabindex="-1">
+    <header class="front-head">
+      <h1 id="page-title">{{.Title}}</h1>
+      {{template "dates" .}}
+    </header>
+    {{template "title-image" .}}
+    <div class="prose">{{.Body}}</div>
+  </main>
+{{template "document-end" .}}

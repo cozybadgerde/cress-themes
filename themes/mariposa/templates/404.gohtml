@@ -1,0 +1,12 @@
+{{template "document-start" .}}
+  <main id="main" class="not-found" tabindex="-1">
+    <header class="front-head">
+      <p class="not-found-code" aria-hidden="true">404</p>
+      <h1>{{label "not_found_title"}}</h1>
+    </header>
+    <div class="prose">
+      <p>{{label "not_found_message"}}</p>
+      <p class="standalone-link"><a href="{{.Site.URL}}">{{label "home"}}</a></p>
+    </div>
+  </main>
+{{template "document-end" .}}
