@@ -1,0 +1,25 @@
+{{template "document-start" .}}
+  <main id="main" class="list" tabindex="-1">
+    <header class="list-head panel">
+      <h1>{{.Title}}</h1>
+      {{template "dates" .}}
+      {{with .Body}}<div class="prose intro">{{.}}</div>{{end}}
+    </header>
+    {{template "title-image" .}}
+    {{with .Entries}}
+    <ul class="cards">
+      {{range .}}
+      <li class="card panel{{if .Image}} has-image{{end}}">
+        <div class="card-text">
+          <h2><a href="{{.URL}}">{{.Title}}</a></h2>
+          {{template "dates" .}}
+          {{with .Excerpt}}<p class="excerpt">{{.}}</p>{{end}}
+        </div>
+        {{template "entry-image" .}}
+      </li>
+      {{end}}
+    </ul>
+    {{end}}
+    {{template "pagination" .}}
+  </main>
+{{template "document-end" .}}

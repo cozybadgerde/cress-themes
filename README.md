@@ -1,12 +1,12 @@
 # Cress themes
 
 Themes for [Cress](https://github.com/cozybadgerde/cress), maintained by
-Cozy Badger. They don't ship with the Cress executable. Install them as local
-themes in your site.
+Cozy Badger.
 
 | Theme | For | Version |
 |-------|-----|---------|
 | [Foxglove](themes/foxglove/) | Publications, journals, and businesses that write a lot. Bold magazine layout with color blocks and an editorial grid. | 0.1.0 |
+| [Bluebell](themes/bluebell/) | Small businesses, products, and personal sites. Rounded glass panels over soft color fields, in light and dark. | 0.1.0 |
 
 Each theme is a complete, standalone package. Installing one doesn't require
 the others.
