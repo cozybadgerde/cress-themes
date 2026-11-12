@@ -32,30 +32,92 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
+          fetch-depth: 0
           persist-credentials: false
-      - name: Package themes
+      - name: Validate versions and package themes
+        shell: bash
         run: |
-          version=${RELEASE_TAG#v}
           number='(0|[1-9][0-9]*)'
           identifier='(0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)'
-          if [[ ! "$version" =~ ^$number\.$number\.$number(-$identifier(\.$identifier)*)?$ ]]; then
-            echo "Expected vMAJOR.MINOR.PATCH with an optional prerelease suffix" >&2
+          build='[0-9A-Za-z-]+'
+          semver="^$number\.$number\.$number(-$identifier(\.$identifier)*)?(\+$build(\.$build)*)?$"
+          version_key() {
+            [[ "$1" =~ $semver ]] || return 1
+            jq -cn --arg version "${1%%+*}" '
+              $version | capture("^(?<core>[0-9]+\\.[0-9]+\\.[0-9]+)(?:-(?<pre>.+))?$")
+              | [
+                  (.core | split(".") | map([length, .])),
+                  if .pre == null then [1] else
+                    [0, (.pre | split(".") | map(
+                      if test("^[0-9]+$") then [0, length, .] else [1, .] end
+                    ))]
+                  end
+                ]
+            '
+          }
+          if [[ "$RELEASE_TAG" != v* ]] || ! current_key=$(version_key "${RELEASE_TAG#v}"); then
+            echo "Invalid SemVer release tag: $RELEASE_TAG" >&2
             exit 1
           fi
+          previous=
+          previous_key=null
+          # Only lower versions reachable from this commit can be a baseline.
+          while IFS= read -r tag; do
+            key=$(version_key "${tag#v}") || continue
+            if jq -en --argjson key "$key" --argjson current "$current_key" \
+              --argjson previous "$previous_key" \
+              '$key < $current and ($previous == null or $key > $previous)' >/dev/null; then
+              previous=$tag
+              previous_key=$key
+            fi
+          done < <(git tag --merged HEAD --sort=refname --list 'v*')
+
+          printf '## Themes\n\n' > release-notes.txt
+          if [[ -n "$previous" ]]; then
+            printf 'Compared with %s.\n\n' "$previous" >> release-notes.txt
+          else
+            printf 'First collection release.\n\n' >> release-notes.txt
+          fi
+          printf '| Theme | Version | Status |\n|-------|---------|--------|\n' >> release-notes.txt
           work=$(mktemp -d)
           trap 'rm -r "$work"' EXIT
           git archive HEAD themes LICENSE | tar -x -C "$work"
-          mkdir dist
+          if [[ -n "$(find "$work/themes" -type l -print -quit)" ]]; then
+            echo "Theme archives must contain real files, not symlinks" >&2
+            exit 1
+          fi
+          dist="$PWD/dist"
+          mkdir "$dist"
           for theme in "$work"/themes/*/; do
             name=$(basename "$theme")
-            jq --arg version "$version" '.version = $version' \
-              "$theme/theme.json" > "$theme/theme.json.new"
-            mv "$theme/theme.json.new" "$theme/theme.json"
-            cp "$work/LICENSE" "$theme/LICENSE"
-            tar -czf "dist/cress-theme-$name-$version.tar.gz" \
-              -C "$work/themes" "$name"
+            version=$(jq -er '.version | strings' "$theme/theme.json")
+            key=$(version_key "$version") || {
+              echo "Invalid theme version: $name ($version)" >&2
+              exit 1
+            }
+            status=Added
+            if [[ -n "$previous" ]] && git cat-file -e "$previous:themes/$name/theme.json" 2>/dev/null; then
+              old_version=$(git show "$previous:themes/$name/theme.json" | jq -er '.version | strings')
+              old_key=$(version_key "$old_version")
+              status=Unchanged
+              if ! git diff --quiet "$previous" HEAD -- "themes/$name"; then
+                status=Changed
+                if ! jq -en --argjson current "$key" --argjson previous "$old_key" \
+                  '$current > $previous' >/dev/null; then
+                  echo "$name changed since $previous; increase its theme.json version ($old_version)" >&2
+                  exit 1
+                fi
+              fi
+            fi
+            printf '| %s | %s | %s |\n' "$name" "$version" "$status" >> release-notes.txt
+            cp -p "$work/LICENSE" "$theme/LICENSE"
+            (
+              cd "$work/themes" || exit
+              export TZ=UTC
+              find "$name" -type f | LC_ALL=C sort | zip -q -X "$dist/$name.zip" -@
+            )
           done
-          (cd dist && sha256sum ./*.tar.gz > SHA256SUMS)
+          (cd "$dist" && sha256sum ./*.zip > checksums.txt)
       - uses: sigstore/cosign-installer@ba7bc0a3fef59531c69a25acd34668d6d3fe6f22 # v4.1.0
         with:
           cosign-release: v3.1.4
@@ -63,21 +125,22 @@ jobs:
         env:
           CERTIFICATE_IDENTITY: https://github.com/${{ github.repository }}/.github/workflows/release.yml@${{ github.ref }}
         run: |
-          for asset in dist/*.tar.gz dist/SHA256SUMS; do
+          for asset in dist/*.zip dist/checksums.txt; do
             cosign sign-blob --yes --bundle "$asset.sigstore.json" "$asset"
             cosign verify-blob "$asset" --bundle "$asset.sigstore.json" \
               --certificate-identity "$CERTIFICATE_IDENTITY" \
               --certificate-oidc-issuer https://token.actions.githubusercontent.com
           done
-      - name: Publish release
+      - name: Create draft release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          if [[ "$RELEASE_TAG" == *-* ]]; then
-            flags=(--prerelease --latest=false)
-          else
-            flags=(--latest)
+          version=${RELEASE_TAG#v}
+          version=${version%%+*}
+          flags=(--draft --latest=false)
+          if [[ "$version" == *-* ]]; then
+            flags+=(--prerelease)
           fi
           gh release create "$RELEASE_TAG" dist/* --verify-tag \
-            --title "$RELEASE_TAG" --generate-notes "${flags[@]}"
+            --title "$RELEASE_TAG" --notes-file release-notes.txt "${flags[@]}"

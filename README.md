@@ -20,9 +20,9 @@ Cress reads local themes from the `themes/` folder of your site. To install
 Foxglove into a site at `my-site/`:
 
 ```sh
-git clone https://github.com/cozybadgerde/cress-themes.git
+curl -fLO https://github.com/cozybadgerde/cress-themes/releases/latest/download/foxglove.zip
 mkdir -p my-site/themes
-cp -R cress-themes/themes/foxglove my-site/themes/
+unzip foxglove.zip -d my-site/themes
 ```
 
 Then select it in `my-site/cress.toml`:
@@ -32,11 +32,19 @@ Then select it in `my-site/cress.toml`:
 name = "foxglove"
 ```
 
-Preview the result with `cress site preview my-site`. Copy the folder as real
-files: Cress rejects symlinks inside a site's `themes/` folder.
+Preview the result with `cress site preview my-site`. The archive contains
+the complete theme folder as real files; Git is not required.
 
 To update a theme, replace its whole folder with the new version. Don't merge
-the files.
+the files. Use the same download URL with another theme's name to install it.
+The `latest` URL becomes available after the first final release is published.
+For prereleases or older versions, download from the
+[releases page](https://github.com/cozybadgerde/cress-themes/releases).
+
+Collection releases and individual themes have independent versions.
+Cress compatibility comes from each theme's `theme.json`, not the collection
+version. The [release guide](docs/RELEASE.md) explains versioning and
+signature verification.
 
 Each theme's `theme.json` lists the Cress versions it supports, and its README
 lists its languages and settings. The
