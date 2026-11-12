@@ -43,37 +43,16 @@ lists its languages and settings. The
 [Cress user guide](https://github.com/cozybadgerde/cress/blob/trunk/docs/USER.md)
 covers sites and theme selection.
 
-## Develop a theme
+## Documentation
 
-Follow the
-[theme developer guide](https://github.com/cozybadgerde/cress/blob/trunk/docs/THEMES.md).
-To try a theme from this repository, create a test site and copy the theme
-into it:
-
-```sh
-mkdir -p tmp
-cress site init tmp/demo
-mkdir -p tmp/demo/themes
-cp -R themes/foxglove tmp/demo/themes/
-```
-
-Set `name = "foxglove"` in `tmp/demo/cress.toml` and run
-`cress site preview tmp/demo`. Copy the theme again after each change. The
-`tmp/` folder is ignored by Git.
-
-Check every page type with real content: the landing page, a list with and
-without images, a long article, `/tour/`, and `404.html`. Check narrow and
-wide windows and keyboard focus.
-
-Before sending a change, run the checks with [mise](https://mise.jdx.dev/):
-
-```sh
-mise run check
-```
-
-They lint Markdown, check spelling and TOML, and build every theme with
-Cress 1.0.0 in English and German. CI runs the same checks. Format TOML files
-with `mise run fmt`.
+- [Themes overview](docs/themes.md): screenshots and details for each theme.
+- [Developer guide](docs/DEVELOPER.md): preview themes and run the checks.
+- [Release guide](docs/RELEASE.md): sign tags, publish releases, and verify
+  assets.
+- [Cress user guide](https://github.com/cozybadgerde/cress/blob/trunk/docs/USER.md):
+  create, configure, preview, and build a site.
+- [Cress theme developer guide](https://github.com/cozybadgerde/cress/blob/trunk/docs/THEMES.md):
+  theme structure, templates, and settings.
 
 ## License
 

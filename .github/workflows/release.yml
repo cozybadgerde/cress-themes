@@ -1,0 +1,83 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@8418fedb1110381a0d3ba51a7a415d7c1b884550 # v5
+      - run: mise run check
+
+  release:
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    env:
+      RELEASE_TAG: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Package themes
+        run: |
+          version=${RELEASE_TAG#v}
+          number='(0|[1-9][0-9]*)'
+          identifier='(0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)'
+          if [[ ! "$version" =~ ^$number\.$number\.$number(-$identifier(\.$identifier)*)?$ ]]; then
+            echo "Expected vMAJOR.MINOR.PATCH with an optional prerelease suffix" >&2
+            exit 1
+          fi
+          work=$(mktemp -d)
+          trap 'rm -r "$work"' EXIT
+          git archive HEAD themes LICENSE | tar -x -C "$work"
+          mkdir dist
+          for theme in "$work"/themes/*/; do
+            name=$(basename "$theme")
+            jq --arg version "$version" '.version = $version' \
+              "$theme/theme.json" > "$theme/theme.json.new"
+            mv "$theme/theme.json.new" "$theme/theme.json"
+            cp "$work/LICENSE" "$theme/LICENSE"
+            tar -czf "dist/cress-theme-$name-$version.tar.gz" \
+              -C "$work/themes" "$name"
+          done
+          (cd dist && sha256sum ./*.tar.gz > SHA256SUMS)
+      - uses: sigstore/cosign-installer@ba7bc0a3fef59531c69a25acd34668d6d3fe6f22 # v4.1.0
+        with:
+          cosign-release: v3.1.4
+      - name: Sign and verify assets
+        env:
+          CERTIFICATE_IDENTITY: https://github.com/${{ github.repository }}/.github/workflows/release.yml@${{ github.ref }}
+        run: |
+          for asset in dist/*.tar.gz dist/SHA256SUMS; do
+            cosign sign-blob --yes --bundle "$asset.sigstore.json" "$asset"
+            cosign verify-blob "$asset" --bundle "$asset.sigstore.json" \
+              --certificate-identity "$CERTIFICATE_IDENTITY" \
+              --certificate-oidc-issuer https://token.actions.githubusercontent.com
+          done
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if [[ "$RELEASE_TAG" == *-* ]]; then
+            flags=(--prerelease --latest=false)
+          else
+            flags=(--latest)
+          fi
+          gh release create "$RELEASE_TAG" dist/* --verify-tag \
+            --title "$RELEASE_TAG" --generate-notes "${flags[@]}"
