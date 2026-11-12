@@ -127,28 +127,30 @@ th { border-top: 3px solid var(--rule-color); border-bottom: 1px solid var(--rul
 }
 .standalone-link > a:hover { background: var(--ink); color: var(--paper); }
 
-/* Front page: a full-width headline, a wide picture, then the text in ruled columns. */
+/* Front page: a full-width headline and picture above a single reading column. */
 .front-head { padding: clamp(2rem, 5vw, 3.5rem) var(--frame) 0; }
-.landing .front-head h1 { max-width: 22ch; font-size: clamp(2.5rem, 7vw, 5.5rem); }
+.landing .front-head h1 { max-width: 32ch; font-size: clamp(2.5rem, 6.5vw, 5rem); }
 .landing .title-image { margin: clamp(1.5rem, 3vw, 2.25rem) var(--frame) 0; }
 .landing .title-image img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.landing .prose { width: auto; margin-inline: var(--frame); }
+.landing .prose { width: min(var(--measure), 100% - 2 * var(--gutter)); margin-inline: auto; }
 .landing .prose > p:first-child { max-width: 46ch; font-size: clamp(1.3125rem, 2.4vw, 1.625rem); line-height: 1.4; hyphens: manual; }
 .landing .prose > p:first-child + p::first-letter { float: left; margin: .06em .1em 0 0; font-size: 3.5em; font-weight: 700; line-height: .82; }
 @supports (initial-letter: 3) {
   .landing .prose > p:first-child + p::first-letter { float: none; margin: 0 .12em 0 0; font-size: inherit; line-height: inherit; initial-letter: 3; }
 }
+.landing .prose > :is(h2, .table-wrapper) {
+  --breakout: min(56rem, 100cqi - 2 * var(--gutter));
+  width: var(--breakout);
+  max-width: none;
+  margin-inline: calc((100% - var(--breakout)) / 2);
+}
 @media (min-width: 48rem) {
   .landing .title-image img { aspect-ratio: 2 / 1; }
-  .landing .prose { columns: 3 17rem; column-gap: var(--col-gap); column-rule: 1px solid var(--hairline); font-size: 1.0625rem; line-height: 1.6; }
-  .landing .prose > :is(p:first-child, h2, figure, pre, blockquote, hr) { column-span: all; }
-  .landing .prose p { orphans: 3; widows: 3; }
+  .landing .prose { font-size: 1.0625rem; line-height: 1.6; }
   .landing .prose > p:first-child { margin-bottom: 1.75rem; }
   .landing .prose > h2 { margin-top: 2.25rem; }
-  .landing .prose > :is(h3, h4, h5, h6) { break-after: avoid; }
-  .landing .prose :is(li, .standalone-link, .table-wrapper) { break-inside: avoid; }
+  .landing .prose :is(ul, ol, li, .standalone-link, .table-wrapper) { break-inside: avoid; }
   .landing .prose .table-wrapper { margin-block: 0 1.25rem; }
-  .landing .prose > :is(figure, pre) { width: auto; margin-inline: 0; }
 }
 
 /* Article: headline, standfirst, and a ruled date line above the reading column. */

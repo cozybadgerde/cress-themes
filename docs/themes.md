@@ -28,14 +28,28 @@ Version 0.1.0. Details are in the [Bluebell README](../themes/bluebell/README.md
 
 ## Mariposa
 
-![Mariposa landing page: a serif masthead between rules, a large headline, and the text in three ruled columns with a drop cap.](assets/mariposa.webp)
+![Mariposa landing page: a serif masthead between rules, a large headline, and a single reading column with a drop cap.](assets/mariposa.webp)
 
 A broadsheet theme for restaurants, cafés, and food trucks. Text is set in
 serif system fonts on off-white newsprint, with heavy and thin rules between
-sections. Landing pages run their text in columns on wide screens. Tables
-suit menus and price lists.
+sections. Landing pages stack their text in a single reading column, with
+wider section headings and tables. Tables suit menus and price lists.
 
 Version 0.1.0. Details are in the [Mariposa README](../themes/mariposa/README.md).
+
+## Iris
+
+![Iris landing page: oversized poster lettering on acid yellow above an urban photograph, followed by a black portfolio section.](assets/iris.webp)
+
+An image-first portfolio for photographers, artists, and tattoo studios.
+Landing pages use oversized condensed lettering and acid-yellow fields above
+black portfolio sections. Image scales vary without cropping, and project
+pages keep longer text on light reading sheets. Anton is bundled locally.
+
+Version 0.1.0. Details are in the [Iris README](../themes/iris/README.md).
+
+The preview uses a CC0 urban photograph by
+[Fons Heijnsbroek](https://commons.wikimedia.org/?curid=179977216).
 
 ## Woodruff
 

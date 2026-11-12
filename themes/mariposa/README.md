@@ -11,8 +11,8 @@ It requires Cress 1.x, from 1.0.0. Installation is described in the
 ## Pages
 
 - Landing pages show a large headline, the dates, and a title image. The
-  first paragraph is shown large. On wide screens the rest of the text runs
-  in up to three ruled columns, and headings, tables, and images span them.
+  first paragraph is shown large. The rest of the text stays in a single
+  reading column, with wider section headings, tables, and images.
   The second paragraph starts with a drop cap, and every paragraph that
   contains only a link becomes a button.
 - Ordinary pages show a large headline, the page's `excerpt` as an italic
@@ -23,9 +23,10 @@ It requires Cress 1.x, from 1.0.0. Installation is described in the
   sits beside the text.
 - The not-found page shows a large 404 with a link home.
 
-Columns apply to landing pages only, so keep landing text short. Tables get
-heavy header rules and aligned numbers, which suits menus and price lists.
-Block quotes become centered pull quotes between rules.
+Landing pages use stacked sections to avoid Safari's multi-column rendering
+issues with spanning headings. Tables get heavy header rules and aligned
+numbers, which suits menus and price lists. Block quotes become centered
+pull quotes between rules.
 
 ## Images
 
