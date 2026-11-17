@@ -89,7 +89,7 @@ figcaption a, .image-caption a { color: inherit; }
   .landing .prose > figure:nth-of-type(even) { grid-column: 1 / 10; }
 }
 
-.article, .not-found { background: var(--paper); }
+.article, .page-content, .not-found { background: var(--paper); color: var(--ink); }
 .prose { width: min(var(--measure), 100% - 2 * var(--gutter)); margin-inline: auto; padding-top: clamp(2rem, 4vw, 3rem); font-size: 1.125rem; line-height: 1.7; }
 .prose > :first-child { margin-top: 0; }
 .prose p, .prose ul, .prose ol { margin: 0 0 1.5rem; }
@@ -123,15 +123,12 @@ th:last-child, td:last-child { padding-right: 0; }
 .table-wrapper .align-right { text-align: right; }
 input[type="checkbox"] { width: 1.1em; height: 1.1em; margin: 0 .5em 0 0; accent-color: var(--ink); vertical-align: -.15em; }
 .standalone-link > a { display: inline-flex; align-items: center; min-height: 3rem; padding: .5rem 0; font-weight: 700; text-transform: uppercase; }
-.article-head { padding: clamp(2rem, 5vw, 4rem) var(--frame); background: var(--signal); }
-.article-head h1 { max-width: 24ch; }
+.page-head { padding: clamp(2rem, 5vw, 4rem) var(--frame); background: var(--signal); }
+.page-head h1 { max-width: 24ch; }
 .standfirst { max-width: 48ch; margin: 1.5rem 0 0; font-size: 1.125rem; }
-.article .title-image { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
+.page-content > .title-image { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
 .list { background: var(--ink); color: var(--paper); }
-.list-head { padding: clamp(2rem, 5vw, 4rem) var(--frame); background: var(--signal); color: var(--ink); }
-.list > .intro { width: min(var(--measure), 100% - 2 * var(--gutter)); margin-inline: auto; padding-top: 1.5rem; }
-.intro > figure, .intro > p:has(> img:only-child) { width: 100%; margin-inline: 0; }
-.list > .title-image { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
+.list > .page-content { padding-bottom: clamp(2rem, 4vw, 3rem); }
 /* Poster pairs keep the supplied reading order, not masonry column flow. */
 .stories { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; gap: 3rem var(--gap); margin: 0; padding: clamp(2rem, 4vw, 3rem) var(--frame); list-style: none; }
 .story { min-width: 0; grid-column: 1 / -1; }
@@ -165,7 +162,7 @@ input[type="checkbox"] { width: 1.1em; height: 1.1em; margin: 0 .5em 0 0; accent
 }
 @media print {
   .masthead nav, .site-footer nav, .pagination, .skip-link { display: none; }
-  body, .article-head, .list-head, .list, .landing .prose, .cover-note { background: none; color: #000; }
+  body, .article, .page-content, .page-head, .list, .landing .prose, .cover-note { background: none; color: #000; }
   .cover.with-image, .landing .prose, .stories { display: block; }
   .cover-note { padding-inline: 0; }
   .story { margin-bottom: 2rem; }

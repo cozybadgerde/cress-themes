@@ -31,8 +31,8 @@ pull quotes between rules.
 ## Images
 
 Mariposa crops title images to fixed shapes: 4:3 on small screens and 2:1 on
-wide screens for landing pages, 16:9 on articles, 3:2 for list entries, and
-21:9 on list pages. Use `focus` in the image settings to keep the important
+wide screens for landing pages, 16:9 on ordinary and list pages, and 3:2
+for list entries. Use `focus` in the image settings to keep the important
 part in view. Images inside the text keep their proportions.
 
 ## Color

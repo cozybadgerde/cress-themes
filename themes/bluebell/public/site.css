@@ -127,7 +127,7 @@ h1 { margin: 0; font-size: clamp(2.25rem, 5.5vw, 4rem); line-height: 1.02; lette
 }
 .identity { display: flex; min-width: 0; min-height: 2.75rem; align-items: center; gap: .625rem; padding-inline: .625rem; border-radius: 999px; color: var(--ink); text-decoration: none; }
 .site-title { font-family: var(--rounded); font-size: 1.1875rem; font-weight: 700; letter-spacing: -.01em; }
-.logo { width: 2.25rem; height: 2.25rem; flex-shrink: 0; object-fit: contain; }
+.logo { width: 2.25rem; height: 2.25rem; flex-shrink: 0; border-radius: 50%; object-fit: contain; }
 nav ul { display: flex; flex-wrap: wrap; gap: .25rem; margin: 0; padding: 0; list-style: none; }
 nav a { display: inline-flex; align-items: center; min-height: 2.75rem; padding: .5rem 1rem; border-radius: 999px; text-decoration: none; }
 .main-nav a { color: var(--ink); font-size: .9375rem; font-weight: 600; transition: background-color .2s var(--ease); }
@@ -217,22 +217,16 @@ th { color: var(--muted); font-size: .875rem; font-weight: 600; }
 .landing .prose > :is(figure, pre) { margin-inline: 0 calc(100% - 100cqi); }
 .landing .prose > p:first-child { font-size: clamp(1.25rem, 2.2vw, 1.625rem); line-height: 1.45; letter-spacing: -.01em; }
 
-/* Article: one sheet with the head, a title image at sheet width, and the text. */
-.article-head { max-width: var(--measure); margin-inline: auto; }
+/* Pages share a sheet for the title, image, and text. */
+.page-content.sheet { width: auto; margin-inline: var(--frame); }
+.page-head { max-width: var(--measure); margin-inline: auto; }
 .standfirst { margin: 1.25rem 0 0; color: var(--muted); font-size: clamp(1.1875rem, 2.2vw, 1.4375rem); line-height: 1.45; }
-.article .title-image { margin: clamp(1.75rem, 4vw, 2.5rem) 0 0; }
-.article .title-image img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-.article .prose { padding-top: clamp(1.75rem, 4vw, 2.5rem); }
+.page-content > .title-image { margin: clamp(1.75rem, 4vw, 2.5rem) 0 0; }
+.page-content > .title-image img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.page-content > .prose { padding-top: clamp(1.75rem, 4vw, 2.5rem); }
 
-/* List: a head panel, then an even grid of cards. */
-.list-head { margin-inline: var(--frame); padding: var(--pad); }
-.list-head h1 { font-size: clamp(2.5rem, 6.5vw, 4.5rem); }
-.list > .intro { margin: 1.25rem var(--frame) 1.25rem; }
-.list > .intro > :is(figure, pre) { width: auto; margin-inline: 0; }
-.list > .intro > p:first-child { font-size: clamp(1.1875rem, 2vw, 1.4375rem); line-height: 1.45; }
-.list > .title-image { margin: 0 var(--frame); }
-.list > .title-image img { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: clamp(.75rem, 2vw, 1.25rem); margin: 0 var(--frame); padding: 0; list-style: none; }
+/* List entries form an even grid of cards. */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: clamp(.75rem, 2vw, 1.25rem); margin: 0 calc(var(--frame) + var(--pad)); padding: 0; list-style: none; }
 .card { position: relative; display: flex; flex-direction: column; min-width: 0; padding: .625rem; transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
 .card:hover { transform: translateY(-4px); box-shadow: var(--highlight), var(--shadow-lift); }
 .card-text { display: flex; flex: 1; flex-direction: column; padding: 1rem 1rem 1.125rem; }

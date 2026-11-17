@@ -136,24 +136,16 @@ th { border-bottom-width: 3px; font-size: .75rem; letter-spacing: .08em; text-tr
 .landing .prose > h2 { padding-top: 1.25rem; border-top: var(--rule); }
 
 /* Article: a wide head, an optional full-width title image, then the reading column. */
-.article-head, .article .title-image { width: min(var(--wide), 100% - 2 * var(--gutter)); margin-inline: auto; }
-.article-head { padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(1.5rem, 3vw, 2rem); border-bottom: var(--rule); }
-.article-head h1 { max-width: 16ch; }
+.page-head, .page-content > .title-image { width: min(var(--wide), 100% - 2 * var(--gutter)); margin-inline: auto; }
+.page-head { padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(1.5rem, 3vw, 2rem); border-bottom: var(--rule); }
+.page-head h1 { max-width: 16ch; }
 .standfirst { max-width: 36ch; margin: 1.5rem 0 0; font-size: clamp(1.25rem, 2.4vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -.01em; }
-.article-head .dates { margin-top: 1.5rem; color: var(--muted); }
-.article .title-image { margin-block: clamp(2rem, 5vw, 3rem) 0; }
-.article .title-image img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-.article .prose > p:first-child { font-size: 1.375rem; line-height: 1.6; }
+.page-head .dates { margin-top: 1.5rem; color: var(--muted); }
+.page-content > .title-image { margin-block: clamp(2rem, 5vw, 3rem) 0; }
+.page-content > .title-image img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.page-content > .prose > p:first-child { font-size: 1.375rem; line-height: 1.6; }
 
 /* List: the first entry on each page leads; others fill an even grid. */
-.list-head { padding: clamp(2.5rem, 7vw, 5rem) var(--frame) 0; }
-.list-head h1 { font-size: clamp(3rem, 9vw, 6rem); }
-.list-head .dates { color: var(--muted); }
-.list > .intro { width: auto; max-width: var(--measure); margin: 0 var(--frame); padding-top: 1.5rem; }
-.list > .intro > :is(figure, pre) { width: auto; }
-.list > .intro > p:first-child { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.45; }
-.list > .title-image { margin: 2.5rem var(--frame) 0; }
-.list > .title-image img { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; }
 .stories {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: clamp(1.5rem, 3vw, 2.5rem);
   margin: clamp(2.5rem, 6vw, 4rem) var(--frame) 0; padding: clamp(1.5rem, 3vw, 2.5rem) 0 0; border-top: var(--rule); list-style: none;

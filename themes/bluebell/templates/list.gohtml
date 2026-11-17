@@ -1,11 +1,13 @@
 {{template "document-start" .}}
   <main id="main" class="list" tabindex="-1">
-    <header class="list-head panel">
-      <h1>{{.Title}}</h1>
-      {{template "dates" .}}
-    </header>
-    {{template "title-image" .}}
-    {{with .Body}}<div class="prose intro">{{.}}</div>{{end}}
+    <div class="page-content sheet panel">
+      <header class="page-head">
+        <h1>{{.Title}}</h1>
+        {{template "dates" .}}
+      </header>
+      {{template "title-image" .}}
+      {{with .Body}}<div class="prose">{{.}}</div>{{end}}
+    </div>
     {{with .Entries}}
     <ul class="cards">
       {{range .}}

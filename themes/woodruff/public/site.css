@@ -110,7 +110,7 @@ figcaption a, .image-caption a { color: inherit; }
 .focus-bottom-right { object-position: 67% 67%; }
 
 /* Double frames: an inner panel inside a thin outer ring. */
-.prose figure img, .prose > pre, .prose > figure > pre, .table-wrapper, .article .title-image img, .list > .title-image img, .card {
+.prose figure img, .prose > pre, .prose > figure > pre, .table-wrapper, .page-content > .title-image img, .card {
   border: 1px solid var(--line);
   border-radius: var(--radius-inner);
   background: var(--surface);
@@ -196,22 +196,17 @@ th { color: var(--muted); font-size: .875rem; font-weight: 600; }
 .landing .prose > p:first-child { margin-bottom: 2rem; font-family: var(--serif); font-size: clamp(1.625rem, 3.4vw, 2.5rem); line-height: 1.2; letter-spacing: -.02em; text-wrap: pretty; }
 
 /* Article: a centered head, a wide framed image, then the reading column. */
-.article-head { width: min(var(--wide), 100% - 2 * var(--gutter)); margin: clamp(3rem, 8vw, 5.5rem) auto 0; text-align: center; }
-.article-head h1 { max-width: 20ch; margin-inline: auto; }
-.article-head .standfirst { max-width: 36rem; margin-inline: auto; }
-.article-head .dates { justify-content: center; }
-.article .title-image { width: min(var(--wide), 100% - 2 * var(--gutter) - .875rem); margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; }
-.article .title-image img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-.article .sheet { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+.page-head { width: min(var(--wide), 100% - 2 * var(--gutter)); margin: clamp(3rem, 8vw, 5.5rem) auto 0; text-align: center; }
+.page-head h1 { max-width: 20ch; margin-inline: auto; }
+.page-head .standfirst { max-width: 36rem; margin-inline: auto; }
+.page-head .dates { justify-content: center; }
+.page-content > .title-image, .cards { width: min(var(--max), 100% - 2 * var(--gutter) - .875rem); }
+.page-content > .title-image { margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; }
+.page-content > .title-image img { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; }
+.page-content > .sheet { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
 
-/* List: a head, then an even grid of double-framed cards. */
-.list-head { width: min(var(--max), 100% - 2 * var(--gutter)); margin: clamp(3rem, 8vw, 5.5rem) auto 0; }
-.list-head h1 { font-size: clamp(2.75rem, 7vw, 5rem); }
-.list > .intro { width: min(var(--max), 100% - 2 * var(--gutter)); max-width: var(--measure); margin: 1.25rem auto 0; }
-.list > .intro > p:first-child { color: var(--muted); font-size: clamp(1.125rem, 2vw, 1.3125rem); line-height: 1.5; }
-.list > .title-image { width: min(var(--max), 100% - 2 * var(--gutter) - .875rem); margin: 2.5rem auto 0; }
-.list > .title-image img { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; }
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); gap: clamp(1.5rem, 3vw, 2rem); width: min(var(--max), 100% - 2 * var(--gutter) - .875rem); margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; padding: 0; list-style: none; }
+/* List entries form an even grid of double-framed cards. */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); gap: clamp(1.5rem, 3vw, 2rem); margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; padding: 0; list-style: none; }
 .card { position: relative; display: flex; flex-direction: column; min-width: 0; padding: .5rem; transition: transform .4s var(--ease); }
 .card:hover { transform: translateY(-3px); }
 .card-text { display: flex; flex: 1; flex-direction: column; padding: 1rem .75rem .875rem; }

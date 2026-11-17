@@ -26,9 +26,9 @@ Block quotes become large pull quotes. Use them for short, quotable lines.
 ## Images
 
 Foxglove crops title images to fixed shapes: 4:3 on landing pages and list
-cards, 3:2 for a lead entry, 16:9 on articles, and 21:9 on list pages. Use `focus` in the image
-settings to keep the important part in view. Images inside the text keep
-their proportions.
+cards, 3:2 for a lead entry, and 16:9 on ordinary and list pages. Use
+`focus` in the image settings to keep the important part in view. Images
+inside the text keep their proportions.
 
 ## Color
 

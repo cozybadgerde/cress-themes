@@ -17,8 +17,9 @@ It requires Cress 1.x, from 1.0.0. Installation is described in the
 - Ordinary pages are a single panel: headline, the page's `excerpt` as a
   standfirst when it's set, date chips, a title image, and the text in a
   reading column.
-- List pages show entries as an even grid of cards in the order Cress
-  provides. Entries without an image get a card tinted with the accent.
+- List pages use the same panel for the page title, image, and text, followed
+  by an even grid of cards in the order Cress provides. Entries without an
+  image get a card tinted with the accent.
 - The not-found page is a compact panel with a large 404 and a link home.
 
 The site title, logo, and main navigation share a floating bar that stays at
@@ -28,8 +29,8 @@ is left out.
 ## Images
 
 Bluebell crops title images to fixed shapes: 4:3 on landing pages (taller on
-wide screens, to match the hero card), 4:3 on list cards, 16:9 on articles,
-and 21:9 on list pages. Use `focus` in the image settings to keep the
+wide screens, to match the hero card), 4:3 on list cards, and 16:9 on
+ordinary and list pages. Use `focus` in the image settings to keep the
 important part in view. Images inside the text keep their proportions.
 
 ## Color
@@ -41,8 +42,8 @@ hues. Buttons use white text on the accent, so choose a color with at least
 4.5:1 contrast against white. Cress warns when it's lower. In dark mode,
 links use a lighter tint of the accent.
 
-A logo shows on both light and dark panels, so use artwork that works on
-both.
+A logo shows on both light and dark panels and is clipped to a circle. Use
+artwork that works on both and fits inside the circular frame.
 
 ## Glass and accessibility
 

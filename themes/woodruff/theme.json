@@ -1,5 +1,5 @@
 {
   "name": "woodruff",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "cress": { "minimum": "1.0.0", "major": 1 }
 }

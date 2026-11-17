@@ -28,8 +28,8 @@ title and dates.
 ## Images
 
 The landing hero fills its frame with the title image, so the crop depends on
-the screen size. Other title images are cropped to fixed shapes: 16:9 on
-articles, 21:9 on list pages, and 3:2 for list entries. Use `focus` in the
+the screen size. Other title images are cropped to fixed shapes: 21:9 on
+ordinary and list pages, and 3:2 for list entries. Use `focus` in the
 image settings to keep the important part in view. Images inside the text
 keep their proportions.
 
