@@ -25,6 +25,18 @@ commit. It ignores unrelated tags and higher collection versions. Changed
 themes must have a higher version than in that baseline. New themes are
 listed as added; with no baseline, all themes are added.
 
+Before tagging, compare the theme directories with that baseline, for
+example:
+
+```sh
+git diff --stat v0.1.0 -- themes/
+```
+
+Replace `v0.1.0` with the applicable baseline. For each changed theme,
+increase the version in its `theme.json`. Commit these changes before
+creating the tag. A failed release run still leaves its pushed tag pointing
+at the old commit; a version bump in a later commit does not change that tag.
+
 ## Publish a prerelease
 
 Review the theme changes and version bumps, commit the changes, and push
