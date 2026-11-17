@@ -207,8 +207,8 @@ th { color: var(--muted); font-size: .875rem; font-weight: 600; }
 /* List: a head, then an even grid of double-framed cards. */
 .list-head { width: min(var(--max), 100% - 2 * var(--gutter)); margin: clamp(3rem, 8vw, 5.5rem) auto 0; }
 .list-head h1 { font-size: clamp(2.75rem, 7vw, 5rem); }
-.list-head .intro { max-width: var(--measure); margin: 1.25rem 0 0; }
-.list-head .intro > p:first-child { color: var(--muted); font-size: clamp(1.125rem, 2vw, 1.3125rem); line-height: 1.5; }
+.list > .intro { width: min(var(--max), 100% - 2 * var(--gutter)); max-width: var(--measure); margin: 1.25rem auto 0; }
+.list > .intro > p:first-child { color: var(--muted); font-size: clamp(1.125rem, 2vw, 1.3125rem); line-height: 1.5; }
 .list > .title-image { width: min(var(--max), 100% - 2 * var(--gutter) - .875rem); margin: 2.5rem auto 0; }
 .list > .title-image img { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); gap: clamp(1.5rem, 3vw, 2rem); width: min(var(--max), 100% - 2 * var(--gutter) - .875rem); margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; padding: 0; list-style: none; }

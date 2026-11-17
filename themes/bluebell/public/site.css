@@ -227,9 +227,9 @@ th { color: var(--muted); font-size: .875rem; font-weight: 600; }
 /* List: a head panel, then an even grid of cards. */
 .list-head { margin-inline: var(--frame); padding: var(--pad); }
 .list-head h1 { font-size: clamp(2.5rem, 6.5vw, 4.5rem); }
-.list-head .intro { margin: 1.25rem 0 0; }
-.list-head .intro > :is(figure, pre) { width: auto; margin-inline: 0; }
-.list-head .intro > p:first-child { font-size: clamp(1.1875rem, 2vw, 1.4375rem); line-height: 1.45; }
+.list > .intro { margin: 1.25rem var(--frame) 1.25rem; }
+.list > .intro > :is(figure, pre) { width: auto; margin-inline: 0; }
+.list > .intro > p:first-child { font-size: clamp(1.1875rem, 2vw, 1.4375rem); line-height: 1.45; }
 .list > .title-image { margin: 0 var(--frame); }
 .list > .title-image img { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow); }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: clamp(.75rem, 2vw, 1.25rem); margin: 0 var(--frame); padding: 0; list-style: none; }

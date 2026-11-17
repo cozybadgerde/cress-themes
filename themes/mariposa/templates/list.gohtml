@@ -3,9 +3,9 @@
     <header class="list-head">
       <h1>{{.Title}}</h1>
       {{template "dates" .}}
-      <div class="prose intro">{{.Body}}</div>
     </header>
     {{template "title-image" .}}
+    <div class="prose intro">{{.Body}}</div>
     {{with .Entries}}
     <div class="stories-frame">
     <ul class="stories">

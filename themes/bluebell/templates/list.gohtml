@@ -3,9 +3,9 @@
     <header class="list-head panel">
       <h1>{{.Title}}</h1>
       {{template "dates" .}}
-      {{with .Body}}<div class="prose intro">{{.}}</div>{{end}}
     </header>
     {{template "title-image" .}}
+    {{with .Body}}<div class="prose intro">{{.}}</div>{{end}}
     {{with .Entries}}
     <ul class="cards">
       {{range .}}

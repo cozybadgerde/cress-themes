@@ -149,9 +149,9 @@ th { border-bottom-width: 3px; font-size: .75rem; letter-spacing: .08em; text-tr
 .list-head { padding: clamp(2.5rem, 7vw, 5rem) var(--frame) 0; }
 .list-head h1 { font-size: clamp(3rem, 9vw, 6rem); }
 .list-head .dates { color: var(--muted); }
-.list-head .intro { width: auto; max-width: var(--measure); margin: 0; padding-top: 1.5rem; }
-.list-head .intro > :is(figure, pre) { width: auto; }
-.list-head .intro > p:first-child { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.45; }
+.list > .intro { width: auto; max-width: var(--measure); margin: 0 var(--frame); padding-top: 1.5rem; }
+.list > .intro > :is(figure, pre) { width: auto; }
+.list > .intro > p:first-child { font-size: clamp(1.25rem, 2.2vw, 1.5rem); line-height: 1.45; }
 .list > .title-image { margin: 2.5rem var(--frame) 0; }
 .list > .title-image img { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; }
 .stories {

@@ -129,7 +129,7 @@ input[type="checkbox"] { width: 1.1em; height: 1.1em; margin: 0 .5em 0 0; accent
 .article .title-image { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
 .list { background: var(--ink); color: var(--paper); }
 .list-head { padding: clamp(2rem, 5vw, 4rem) var(--frame); background: var(--signal); color: var(--ink); }
-.list-head .intro { width: min(var(--measure), 100%); margin-inline: 0; padding-top: 1.5rem; }
+.list > .intro { width: min(var(--measure), 100% - 2 * var(--gutter)); margin-inline: auto; padding-top: 1.5rem; }
 .intro > figure, .intro > p:has(> img:only-child) { width: 100%; margin-inline: 0; }
 .list > .title-image { width: min(var(--max), 100% - 2 * var(--gutter)); margin-inline: auto; }
 /* Poster pairs keep the supplied reading order, not masonry column flow. */
